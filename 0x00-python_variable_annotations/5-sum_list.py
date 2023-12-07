@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+"""
+Define and annotate the following
+variables with the specified values.
+"""
 from typing import List
-
-"""Define and annotate the following variables with the specified values."""
 
 
 def sum_list(input_list: List[float]) -> float:
