@@ -2,10 +2,9 @@
 """
 Basic annotations - safe_first_element
 """
-from typing import Union, Any, List
+from typing import Sequence, Any, Union
 
-
-def safe_first_element(lst: List[Any]) -> Union[Any, None]:
+def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
     """
     Augment the following code with
     the correct duck-typed annotations:
