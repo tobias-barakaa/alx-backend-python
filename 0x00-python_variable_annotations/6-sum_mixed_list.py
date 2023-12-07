@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-from typing import List, Union
-
+from typing import Union, List
 """
 function that takes a list input_list of
 floats as argument and returns their sum as a float.
