@@ -3,6 +3,6 @@
 """Basic annotations - floor"""
 
 
-def floor(n: float) -> str:
+def to_str(n: float) -> str:
     """Takes a float n as argument and returns the string rep of float."""
     return str(n)
