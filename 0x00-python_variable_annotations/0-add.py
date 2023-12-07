@@ -1,8 +1,16 @@
 #!/usr/bin/python3
 
-"""funtion that adds two float number"""
-
+"""Function that adds two float numbers."""
 
 def add(a: float, b: float) -> float:
-    """Add two floats and return the result as a float"""
+    """
+    Add two floats.
+
+    Parameters:
+    a (float): The first float.
+    b (float): The second float.
+
+    Returns:
+    float: The sum of the two floats.
+    """
     return a + b
