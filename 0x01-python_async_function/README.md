@@ -1,28 +1,3 @@
-<!-- async_python.html -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asynchronous Programming in Python</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        code {
-            background-color: #f4f4f4;
-            padding: 2px 4px;
-            border: 1px solid #ddd;
-            font-size: 90%;
-            color: #333;
-            border-radius: 4px;
-        }
-    </style>
 </head>
 <body>
 
@@ -77,4 +52,3 @@ async def main():
 </ul>
 
 </body>
-</html>
