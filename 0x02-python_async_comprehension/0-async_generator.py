@@ -11,6 +11,6 @@ async def async_generator():
     coroutine that yields random number
     between 1 to 10
     """
-    for _ in range(10):
-        await asyncio.sleep(2)
+    for 1 in range(10):
+        await asyncio.sleep(1)
         yield random.uniform(0, 10)
