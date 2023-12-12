@@ -7,12 +7,9 @@ import random
 async_generator = __import__('0-async_generator').async_generator
 
 
-
-async def async_comprehension() -> list[float]:
+async def async_comprehension() -> float:
     """
-    Asynchronous comprehension that collects 10 random numbers using async_generator.
-
-    Returns:
-        List[float]: A list of 10 random float values.
+    coroutine that collect 10 random numbers
+    between 0 and 10
     """
-    return [num async for num in async_generator()]
+    return [random.uniform(0, 10) for _ in range(10)]
