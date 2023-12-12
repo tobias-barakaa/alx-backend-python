@@ -4,9 +4,11 @@
 coroutine function that take no argument
 """
 import random
+async_generator = __import__('0-async_generator').async_generator
+import Generator
 
 
-async def async_comprehension() -> float:
+async def async_comprehension() -> Generator[float, None, None]:
     """
     coroutine that collect 10 random numbers
     between 0 and 10
