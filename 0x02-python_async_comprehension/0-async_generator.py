@@ -12,5 +12,5 @@ async def async_generator():
     between 1 to 10
     """
     for _ in range(10):
-        await asyncio.sleep(1)
+        await asyncio.sleep(2)
         yield random.uniform(0, 10)
