@@ -3,8 +3,9 @@
 """
 coroutine function that take no argument
 """
-import random
+import asyncio
 from typing import List
+from random import uniform
 async_generator = __import__('0-async_generator').async_generator
 
 
@@ -15,5 +16,4 @@ async def async_comprehension() -> List[float]:
     Returns:
         list: A list of 10 random numbers.
     """
-    async for _ in async_generator():
-        yield random.randint(1, 9)
+    return [i async for i in async_generator()][:10]
