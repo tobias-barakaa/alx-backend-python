@@ -3,9 +3,7 @@
 """
 coroutine function that take no argument
 """
-import asyncio
 from typing import List
-from random import uniform
 async_generator = __import__('0-async_generator').async_generator
 
 
