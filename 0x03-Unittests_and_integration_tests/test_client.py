@@ -69,20 +69,22 @@ class TestGithubOrgClient(unittest.TestCase):
         client = GithubOrgClient("x")
         result = client.has_license(repo, license_key)
         self.assertEqual(result, expected)
-
-    def test_public_repos(self):
+    
+    def test_public_repos_with_license(self):
         """
-        Test that the list of repos is what you expect from the chosen payload.
+        Test that the list of repos filtered by license is what you expect
+        from the chosen payload.
         """
-        json_payload = [{"name": "Google", "license": {"key": "my_license"}},
-                        {"name": "Twttr", "license": {"key": "other_license"}}]
+        org = "org"
+        repo = {"license": {"key": "my_license"}}
+        payload = [repo]
         with patch('client.GithubOrgClient._public_repos_url',
                    new_callable=PropertyMock) as mock_public_repos_url:
-            mock_public_repos_url.return_value = json_payload
+            mock_public_repos_url.return_value = payload
             with patch('client.get_json',
-                       return_value=json_payload) as mock_get_json:
-                client = GithubOrgClient("x")
+                       return_value=payload) as mock_get_json:
+                client = GithubOrgClient(org)
                 result = client.public_repos("my_license")
-                self.assertEqual(result, ["Google"])
+                self.assertEqual(result, ["Google", "Twttr"])
                 mock_public_repos_url.assert_called_once_with()
-                mock_get_json.assert_called_once_with(json_payload)
+                mock_get_json.assert_called_once_with(payload)
