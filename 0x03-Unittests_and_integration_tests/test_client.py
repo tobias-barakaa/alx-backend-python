@@ -5,7 +5,7 @@ Test suite for the GithubOrgClient class.
 """
 
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, PropertyMock, Mock
 from parameterized import parameterized
 from client import GithubOrgClient
 
@@ -42,3 +42,15 @@ class TestGithubOrgClient(unittest.TestCase):
             result = client._public_repos_url
             self.assertEqual(result, expected)
             mock_method.assert_called_once_with()
+
+    def test_public_repos(self):
+        """
+        Test that the list of repos is what you expect from the chosen payload.
+        """
+        mock_json = [{"name": "Google"}, {"name": "Twitter"}]
+        with patch('client.GithubOrgClient._public_repos_url',
+                   new_callable=PropertyMock) as mock_public_repos_url:
+            mock_public_repos_url.return_value = mock_json
+            client = GithubOrgClient("x")
+            self.assertEqual(client.public_repos(), ["Google", "Twitter"])
+            mock_public_repos_url.assert_called_once_with()
