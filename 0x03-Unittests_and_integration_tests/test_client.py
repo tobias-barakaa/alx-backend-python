@@ -69,7 +69,7 @@ class TestGithubOrgClient(unittest.TestCase):
         client = GithubOrgClient("x")
         result = client.has_license(repo, license_key)
         self.assertEqual(result, expected)
-    
+
     def test_public_repos_with_license(self):
         """
         Test that the list of repos filtered by license is what you expect
