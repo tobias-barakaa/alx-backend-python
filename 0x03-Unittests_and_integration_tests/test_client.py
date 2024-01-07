@@ -11,7 +11,9 @@ from client import GithubOrgClient
 
 
 class TestGithubOrgClient(unittest.TestCase):
-    """TestGithubOrgClient class."""
+    """
+    TestGithubOrgClient class.
+    """
     @parameterized.expand([
             ("google"),
             ("abc"),
@@ -25,3 +27,18 @@ class TestGithubOrgClient(unittest.TestCase):
         client.org()
         mock_get_json.assert_called_once_with(
             f"https://api.github.com/orgs/{org_name}")
+    
+
+    def test_public_repos_url(self):
+        """
+        Test that the result of _public_repos_url is the expected one
+        based on the mocked payload.
+        """
+        expected = "www.yes.com"
+        payload = {"repos_url": expected}
+        with patch('client.GithubOrgClient.org',
+                   return_value=payload) as mock_method:
+            client = GithubOrgClient("x")
+            result = client._public_repos_url
+            self.assertEqual(result, expected)
+            mock_method.assert_called_once_with()
