@@ -4,12 +4,8 @@ function test
 """
 import unittest
 from unittest.mock import patch, Mock
-from typing import Dict
 from parameterized import parameterized
-from utils import access_nested_map
-from utils import get_json
-from utils import memoize
-import requests
+from utils import access_nested_map, get_json, memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -54,6 +50,9 @@ class TestMemoize(unittest.TestCase):
     Test memoization
     """
     def test_memoize(self):
+        """
+        test memoize
+        """
         class TestClass:
             def a_method(self):
                 return 42
