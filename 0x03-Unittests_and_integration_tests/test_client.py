@@ -75,19 +75,16 @@ class TestGithubOrgClient(unittest.TestCase):
         Test that the list of repos filtered by license is what you expect
         from the chosen payload.
         """
-        org_payload = [{"license": {"key": "my_license"}}, {"license": {"key": "other_license"}}]
-        repos_payload = [{"name": "Google"}, {"name": "Twttr"}]
+        org = "org"
+        repo = {"license": {"key": "my_license"}}
+        payload = [repo]
         with patch('client.GithubOrgClient._public_repos_url',
                    new_callable=PropertyMock) as mock_public_repos_url:
-            with patch('client.GithubOrgClient.org',
-                       return_value=org_payload) as mock_org:
-                mock_public_repos_url.return_value = repos_payload
-                with patch('client.GithubOrgClient.has_license',
-                           return_value=True) as mock_has_license:
-                    client = GithubOrgClient("x")
-                    result = client.public_repos("my_license")
-                    self.assertEqual(result, ["Google", "Twttr"])
-                    mock_public_repos_url.assert_called_once_with()
-                    mock_org.assert_called_once_with()
-                    mock_has_license.assert_called_once_with(org_payload[0],
-                                                             "my_license")
+            mock_public_repos_url.return_value = payload
+            with patch('client.get_json',
+                       return_value=payload) as mock_get_json:
+                client = GithubOrgClient(org)
+                result = client.public_repos("my_license")
+                self.assertEqual(result, ["Google", "Twttr"])
+                mock_public_repos_url.assert_called_once_with()
+                mock_get_json.assert_called_once_with(payload)
