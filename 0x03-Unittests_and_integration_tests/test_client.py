@@ -25,5 +25,6 @@ class TestGithubOrgClient(unittest.TestCase):
             mock_get.return_value = mock_payload
             test_class = GithubOrgClient(org_name)
             test_class.org()
-            mock_get.assert_called_once_with(f"https://api.github.com/orgs/{org_name}")
+            mock_get.assert_called_once_with
+            (f"https://api.github.com/orgs/{org_name}")
             self.assertEqual(test_class._org_name, org_name)
