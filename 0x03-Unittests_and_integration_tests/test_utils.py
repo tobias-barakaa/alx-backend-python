@@ -2,10 +2,10 @@
 """
 function test
 """
+from utils import access_nested_map, get_json, memoize
 import unittest
 from unittest.mock import patch, Mock
 from parameterized import parameterized
-from utils import access_nested_map, get_json, memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -61,8 +61,11 @@ class TestMemoize(unittest.TestCase):
             def a_property(self) -> int:
                 return self.a_method()
 
-        with patch.object(TestClass, 'a_method') as mock_method:
-            test = TestClass()
-            test.a_property
-            test.a_property
-            mock_method.assert_called_once()
+        with patch.object(TestClass, 'a_method') as mock_a_method:
+            test_object = TestClass()
+            result1 = test_object.a_property
+            mock_a_method.assert_called_once()
+            result2 = test_object.a_property
+            mock_a_method.assert_called_once()
+            self.assertEqual(result1, result2)
+            self.assertEqual(result1, 42)
