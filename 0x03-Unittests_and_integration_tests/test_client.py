@@ -27,7 +27,6 @@ class TestGithubOrgClient(unittest.TestCase):
         client.org()
         mock_get_json.assert_called_once_with(
             f"https://api.github.com/orgs/{org_name}")
-    
 
     def test_public_repos_url(self):
         """
