@@ -63,14 +63,8 @@ class TestMemoize(unittest.TestCase):
 
         with patch.object(TestClass, 'a_method') as mock_method:
             test = TestClass()
-
-            # First access
             result1 = test.a_property
             self.assertEqual(result1, 42)
-
-            # Second access should reuse the memoized result
             result2 = test.a_property
             self.assertEqual(result2, 42)
-
-            # Ensure that a_method is called only once
             mock_method.assert_called_once()
