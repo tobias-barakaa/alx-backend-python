@@ -5,7 +5,7 @@ Test suite for the GithubOrgClient class.
 """
 
 import unittest
-from unittest.mock import patch, PropertyMock, Mock
+from unittest.mock import patch, PropertyMock
 from parameterized import parameterized
 from client import GithubOrgClient
 
