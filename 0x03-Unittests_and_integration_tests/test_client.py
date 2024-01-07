@@ -16,7 +16,9 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     @patch("client.get_json")
     def test_org(self, org_name, mock_get_json):
-        """Tests that org() returns the correct value and calls get_json() once with the expected argument."""
+        """Tests that org() returns the correct value and
+        calls get_json() once with the expected argument.
+        """
 
         expected_url = GithubOrgClient.ORG_URL.format(org=org_name)
         expected_return_value = {"key": "value"}
