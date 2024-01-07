@@ -47,10 +47,14 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         Test that the list of repos is what you expect from the chosen payload.
         """
-        mock_json = [{"name": "Google"}, {"name": "Twitter"}]
+        payload = [{"name": "Google"}, {"name": "Twttr"}]
         with patch('client.GithubOrgClient._public_repos_url',
                    new_callable=PropertyMock) as mock_public_repos_url:
-            mock_public_repos_url.return_value = mock_json
-            client = GithubOrgClient("x")
-            self.assertEqual(client.public_repos(), ["Google", "Twitter"])
-            mock_public_repos_url.assert_called_once_with()
+            mock_public_repos_url.return_value = payload
+            with patch('client.get_json',
+                       return_value=payload) as mock_get_json:
+                client = GithubOrgClient("x")
+                result = client.public_repos()
+                self.assertEqual(result, ["Google", "Twttr"])
+                mock_public_repos_url.assert_called_once_with()
+                mock_get_json.assert_called_once_with(payload)
