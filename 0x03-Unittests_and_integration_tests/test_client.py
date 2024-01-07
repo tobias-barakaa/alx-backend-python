@@ -10,21 +10,16 @@ from typing import Dict
 
 
 class TestGithubOrgClient(unittest.TestCase):
-    """
-    function/method test
-    """
+
     @parameterized.expand([
-        ("google"),
-        ("abc"),
+        ("google",),
+        ("abc",),
     ])
-    def test_org(self, org_name: str, mock_payload: Dict):
-        """
-        test org
-        """
-        with patch('client.get_json') as mock_get:
-            mock_get.return_value = mock_payload
-            test_class = GithubOrgClient(org_name)
-            test_class.org()
-            mock_get.assert_called_once_with
-            (f"https://api.github.com/orgs/{org_name}")
-            self.assertEqual(test_class._org_name, org_name)
+    @patch('client.get_json', return_value={'example_key': 'example_value'})
+    def test_org(self, org_name, mock_get_json):
+        client = GithubOrgClient(org_name)
+        result = client.org()
+        expected_url = f'https://api.github.com/orgs/{org_name}'
+        
+        mock_get_json.assert_called_once_with(expected_url)
+        self.assertEqual(result, {'example_key': 'example_value'})
